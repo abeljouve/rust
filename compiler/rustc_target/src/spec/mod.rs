@@ -1870,6 +1870,7 @@ crate::target_spec_enum! {
     pub enum Arch {
         AArch64 = "aarch64",
         AmdGpu = "amdgpu",
+        Arc = "arc",
         Arm = "arm",
         Arm64EC = "arm64ec",
         Avr = "avr",
@@ -1907,6 +1908,7 @@ impl Arch {
         match self {
             Self::AArch64 => sym::aarch64,
             Self::AmdGpu => sym::amdgpu,
+            Self::Arc => sym::arc,
             Self::Arm => sym::arm,
             Self::Arm64EC => sym::arm64ec,
             Self::Avr => sym::avr,
@@ -1950,10 +1952,10 @@ impl Arch {
             // to needlessly restrict custom target.json configurations.
             Other(_) => true,
 
-            AArch64 | AmdGpu | Arm | Arm64EC | Avr | CSky | Hexagon | LoongArch32 | LoongArch64
-            | M68k | Mips | Mips32r6 | Mips64 | Mips64r6 | Msp430 | Nvptx64 | PowerPC
-            | PowerPC64 | RiscV32 | RiscV64 | S390x | Sparc | Sparc64 | Wasm32 | Wasm64 | X86
-            | X86_64 | Xtensa => true,
+            AArch64 | AmdGpu | Arc | Arm | Arm64EC | Avr | CSky | Hexagon | LoongArch32
+            | LoongArch64 | M68k | Mips | Mips32r6 | Mips64 | Mips64r6 | Msp430 | Nvptx64
+            | PowerPC | PowerPC64 | RiscV32 | RiscV64 | S390x | Sparc | Sparc64 | Wasm32
+            | Wasm64 | X86 | X86_64 | Xtensa => true,
         }
     }
 
@@ -1963,7 +1965,7 @@ impl Arch {
 
         match self {
             AArch64 | RiscV32 | RiscV64 => true,
-            AmdGpu | Arm | Arm64EC | Avr | Bpf | CSky | Hexagon | LoongArch32 | LoongArch64
+            AmdGpu | Arc | Arm | Arm64EC | Avr | Bpf | CSky | Hexagon | LoongArch32 | LoongArch64
             | M68k | Mips | Mips32r6 | Mips64 | Mips64r6 | Msp430 | Nvptx64 | PowerPC
             | PowerPC64 | S390x | Sparc | Sparc64 | SpirV | Wasm32 | Wasm64 | X86 | X86_64
             | Xtensa | Other(_) => false,
@@ -3793,6 +3795,7 @@ impl Target {
             Arch::CSky => (Architecture::Csky, None),
             Arch::Arm64EC => (Architecture::Aarch64, Some(object::SubArchitecture::Arm64EC)),
             Arch::AmdGpu
+            | Arch::Arc
             | Arch::Nvptx64
             | Arch::SpirV
             | Arch::Wasm32

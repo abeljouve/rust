@@ -497,6 +497,7 @@ symbols! {
         autodiff_reverse,
         automatically_derived,
         available_externally,
+        arc,
         avr,
         avr_target_feature,
         avx,
