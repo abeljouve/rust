@@ -11,6 +11,7 @@ use crate::spec::{Arch, HasTargetSpec, HasX86AbiOpt};
 
 mod aarch64;
 mod amdgpu;
+mod arc;
 mod arm;
 mod avr;
 mod bpf;
@@ -707,6 +708,7 @@ impl<'a, Ty> FnAbi<'a, Ty> {
             Arch::RiscV32 | Arch::RiscV64 => riscv::compute_abi_info(cx, self),
             Arch::Wasm32 | Arch::Wasm64 => wasm::compute_abi_info(cx, self),
             Arch::Bpf => bpf::compute_abi_info(cx, self),
+            Arch::Arc => arc::compute_abi_info(cx, self),
             arch @ (Arch::SpirV | Arch::Other(_)) => {
                 panic!("no lowering implemented for {arch}")
             }
