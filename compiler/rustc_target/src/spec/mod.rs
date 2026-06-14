@@ -1699,6 +1699,8 @@ supported_targets! {
     ("riscv64gc-unknown-linux-musl", riscv64gc_unknown_linux_musl),
     ("riscv64a23-unknown-linux-gnu", riscv64a23_unknown_linux_gnu),
 
+    ("arc700eb-unknown-elf", arc700eb_unknown_elf),
+
     ("sparc-unknown-none-elf", sparc_unknown_none_elf),
 
     ("loongarch32-unknown-none", loongarch32_unknown_none),
