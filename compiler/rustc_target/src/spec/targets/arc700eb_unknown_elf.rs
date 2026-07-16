@@ -17,7 +17,11 @@ pub(crate) fn target() -> Target {
 
         options: TargetOptions {
             c_int_width: 32,
-            cpu: "arc700".into(),
+            cpu: "bcm55030".into(),
+            // Kept explicit even though the CPU already implies all three:
+            // defence-in-depth, so a build stays correct if the CPU is ever
+            // unrecognised by the backend (LLVM warns and ignores rather than
+            // erroring, which would otherwise silently drop the feature set).
             features: "+arcompact,+bigendian,+norm".into(),
             linker: Some("arceb-elf32-gcc".into()),
             max_atomic_width: Some(0),
